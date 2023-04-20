@@ -1,8 +1,10 @@
+import sys
 import argparse
+import pickle
 from config import load_configuration
-from data_processing import data_processing, load_repository_and_initialize_database
+from data_processing import ingest_data
 from chat import chat_loop
-from langchain.vectorstores import DeepLake
+from langchain.vectorstores import FAISS
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.callbacks.base import CallbackManager
@@ -19,10 +21,12 @@ openai_api_key, activeloop_api_key, deeplake_account_name = load_configuration()
 
 if args.process_data:
     root_dir = './ingest'
-    db, embeddings = data_processing(root_dir, deeplake_account_name)
+    ingest_data(root_dir)
+    print("Documents successfully ingested, embedded and saved to disk. Run the app.py file again but without the '--process-data' flag to chat with your docs!")
+    sys.exit()
 else:
-    embeddings = OpenAIEmbeddings()
-    db = DeepLake(dataset_path=f"hub://{deeplake_account_name}/langchain-code", read_only=True, embedding_function=embeddings)
+    with open("db.pkl", "rb") as f:
+        db = pickle.load(f)
 
 # Init database and config
 retriever = db.as_retriever()

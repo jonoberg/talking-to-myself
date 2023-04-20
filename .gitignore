@@ -4,6 +4,9 @@
 # Scratchpad
 .scratchpad
 
+# Local db
+*.pkl
+
 # Python-specific
 __pycache__/
 *.pyc
