@@ -14,6 +14,9 @@ from langchain.vectorstores import DeepLake
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 
+def get_user_input(prompt):
+    return input(prompt)
+
 # Load repository
 root_dir = './ingest'
 docs = []
@@ -49,22 +52,19 @@ retriever.search_kwargs['k'] = 10
 model = ChatOpenAI(model='gpt-3.5-turbo') # 'ada' 'gpt-3.5-turbo' 'gpt-4',
 qa = ConversationalRetrievalChain.from_llm(model,retriever=retriever)
 
-# User input
-questions = [
-    "Is there a chain the implements a chat interface on top of an LLM, will retrieve relevant documents from a vectorstore and will cite it's sources?",
-    # "What classes are derived from the Chain class?",
-    # "What classes and functions in the ./langchain/utilities/ forlder are not covered by unit tests?",
-    # "What one improvement do you propose in code in relation to the class herarchy for the Chain class?",
-] 
-
 #Init chat history
 chat_history = []
 
-# Query LLM with User Input
-# Append user input and LLM response to chat history
-# Print user input and LLM reponse to stdout
-for question in questions:  
+print("Welcome to codechat! Feel free to ask your code repository any questions you need help with.")
+print("Type 'exit' or 'quit' to end the conversation.\n")
+
+while True:
+    question = get_user_input("-> You: ")
+    
+    if question.lower() in ('exit', 'quit'):
+        print("Goodbye!")
+        break
+
     result = qa({"question": question, "chat_history": chat_history})
     chat_history.append((question, result['answer']))
-    print(f"-> **Question**: {question} \n")
-    print(f"**Answer**: {result['answer']} \n")
+    print(f"-> AI: {result['answer']}\n")
