@@ -5,6 +5,8 @@ from chat import chat_loop
 from langchain.vectorstores import DeepLake
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
+from langchain.callbacks.base import CallbackManager
+from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.chains import ConversationalRetrievalChain
 
 # Parse CLI for flags
@@ -30,7 +32,13 @@ retriever.search_kwargs['maximal_marginal_relevance'] = True
 retriever.search_kwargs['k'] = 10
 
 # Init and config LLM
-model = ChatOpenAI(model='gpt-3.5-turbo') # 'ada' 'gpt-3.5-turbo' 'gpt-4',
+model = ChatOpenAI(
+    model='gpt-3.5-turbo',
+    temperature=0,
+    streaming=True, 
+    callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]), 
+    verbose=True
+    )
 qa = ConversationalRetrievalChain.from_llm(model, retriever=retriever)
 
 # Start chat loop

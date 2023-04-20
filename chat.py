@@ -12,12 +12,12 @@ def chat_loop(qa):
     print("Type 'exit' or 'quit' to end the conversation.\n")
 
     while True:
-        question = get_user_input("-> You: ")
+        question = get_user_input("\n-> You: ")
 
         if question.lower() in ('exit', 'quit'):
             print("Goodbye!")
             break
 
+        print(f"-> AI: ", end='', flush=True)
         result = qa({"question": question, "chat_history": chat_history})
         chat_history.append((question, result['answer']))
-        print(f"-> AI: {result['answer']}\n")
