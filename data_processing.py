@@ -28,3 +28,8 @@ def load_repository_and_initialize_database(root_dir, deeplake_account_name):
     db = DeepLake.from_documents(texts, embeddings, dataset_path=f"hub://{deeplake_account_name}/langchain-code")
 
     return db, embeddings
+
+def data_processing(root_dir, deeplake_account_name):
+    # Load repository and initialize database
+    db, embeddings = load_repository_and_initialize_database(root_dir, deeplake_account_name)
+    return db, embeddings
