@@ -43,7 +43,10 @@ model = ChatOpenAI(
     callback_manager=CallbackManager([StreamingStdOutCallbackHandler()]), 
     verbose=True
     )
-qa = ConversationalRetrievalChain.from_llm(model, retriever=retriever)
+qa = ConversationalRetrievalChain.from_llm(
+    model,
+    retriever=retriever
+    )
 
 # Start chat loop
 chat_loop(qa)
