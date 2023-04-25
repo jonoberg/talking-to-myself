@@ -78,11 +78,3 @@ Feel free to contribute to this project by submitting pull requests, reporting b
 ## License
 
 This project is licensed under the MIT License.
-
-## Ingest Your Documents
-
-Two options:
-- Place the docs you want to be able to chat with into the `/ingest/` folder
-- Set an `ENV` with the text string of the location of your documents on disk
-- Modify your `.env` file to save the path to your directory of Markdown documents
-- 
