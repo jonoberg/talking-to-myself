@@ -20,6 +20,8 @@ def get_prompt_templates():
     {context}
     =========
     Answer in Markdown:"""
-    qa_prompt = PromptTemplate(template=template, input_variables=["question", "context"])
+    qa_prompt = PromptTemplate(
+        template=template, 
+        input_variables=["question", "context"])
 
     return condense_question_prompt, qa_prompt

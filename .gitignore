@@ -2,10 +2,10 @@
 /ingest/*
 /archive
 
-# Scratchpad
+# Coding scratchpad
 .scratchpad
 
-# Local db
+# Local vectorestore db
 *.pkl
 
 # Python-specific
@@ -18,10 +18,13 @@ __pycache__/
 *.pyd
 *.log
 
-# Virtual environment directories
+# Secrets files
+secrets.json
 .env
-venv/
 .env/
+
+# Virtual environment directories
+venv/
 .pyenv/
 
 # Jupyter Notebook checkpoints

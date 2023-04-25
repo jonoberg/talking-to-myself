@@ -1,3 +1,5 @@
+# talking-to-myself
+
 import sys
 import argparse
 import pickle
@@ -33,10 +35,10 @@ def main():
         llm,
         retriever=retriever,
         qa_prompt=QA_PROMPT,
-        condense_question_prompt=CONDENSE_QUESTION_PROMPT,
+        condense_question_prompt=CONDENSE_QUESTION_PROMPT
         )
 
-    retriever, model, chain = init_settings(retriever, llm, chain)
+    retriever, llm, chain = init_settings(retriever, llm, chain)
 
     # Start chat loop
     chat_loop(chain)
