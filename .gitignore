@@ -1,5 +1,6 @@
 # Folder for ingesting code repositories
 /ingest/*
+/archive
 
 # Scratchpad
 .scratchpad
