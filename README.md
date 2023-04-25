@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 This project requires your OpenAI API key and the path to directory containing the documents you want to ingest. If you don't want to specify a directory to ingest your documents from you can instead place your documents inside of the `/ingest` folder and leave the `root_dir` value blank. There are three ways to configure these settings:
 
-1. `secrets.json` file: Create a JSON file named `secrets.json` in the root directory of the project with the following format:
+1. JSON file: Create a JSON file named `secrets.json` in the root directory of the project with the following format:
 
 ```json
 {
@@ -41,13 +41,19 @@ This project requires your OpenAI API key and the path to directory containing t
 }
 ```
 
-2. .env file: Alternatively, you can create a .env file in the root directory of the project with the following format:
+2. DOTENV file: Alternatively, you can create a `.env` file in the root directory of the project with the following format:
 ```
 OPENAI_API_KEY=your_openai_api_key_here
 ROOT_DIR=path/to/your/document/directory
 ```
 
-3. Environment variables: If you prefer not to use a secrets.json or .env file, you can set environment variables named OPENAI_API_KEY and ROOT_DIR with the appropriate values.
+Don't forget to install the `python-dotenv` package:
+```bash
+pip install python-dotenv
+```
+
+
+3. Environment variables: If you prefer not to use a secrets.json or .env file, you can set environment variables named OPENAI_API_KEY and ROOT_DIR with the appropriate values:
 ```bash
 export OPENAI_API_KEY="your_openai_api_key_here"
 export ROOT_DIR="path/to/your/document/directory"

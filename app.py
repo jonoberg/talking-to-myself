@@ -29,7 +29,7 @@ def main():
 
     retriever = db.as_retriever()
 
-    llm = ChatOpenAI()
+    llm = ChatOpenAI(openai_api_key=openai_api_key)
 
     chain = ConversationalRetrievalChain.from_llm(
         llm,
